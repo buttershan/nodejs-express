@@ -1,14 +1,20 @@
+var vcard = [];
+exports.create= function(req, res) {
+	console.log(">>>>>>>>>>>>> create");
+
 
 var person = {
+	name:"",
+	nickname: "",
 	tel:""
 
 };
 
+person.nickname = req.params.name;
+person.name = req.query.name;
+person.tel = req.query.tel;
+vcard.push(person);
 
-exports.create= function(req, res) {
-	console.log(">>>>>>>>>>>>> create");
-
-	person.tel = "123456789";
 
 	res.end();
 };
@@ -16,17 +22,23 @@ exports.create= function(req, res) {
 exports.read= function(req, res) {
 	console.log(">>>>>>>>>>>>> read");
 
-	res.send(person);
+	res.send(vcard);
  	res.end();
 };
 
-exports.update= function(req, res) {
-	console.log(">>>>>>>>>>>>> update");
-	console.log(req.query);
-	person.tel = req.query.tel;
+exports.update = function(req, res){
+        var nickname = req.params.name;
 
+        vcard.forEach(function (entry) {
+                if (entry.nickname === nickname) {
+                        console.log('found!');
+                        
+                        entry.name =  req.query.name;
+                        entry.tel =  req.query.tel;
+                }
+        });
 
-	res.end();
+        res.end();
 };
 
 exports.delete= function(req, res) {

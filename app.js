@@ -34,10 +34,10 @@ if ('development' == app.get('env')) {
 
 
 //REST API
-app.post('/1/user/shan', api.create);
-app.get('/1/user/shan', api.read);
-app.put('/1/user/shan', api.update);
-app.delete('/1/user/shan', api.delete);
+app.post('/1/user/:name', api.create);
+app.get('/1/user/:name', api.read);
+app.put('/1/user/:name', api.update);
+app.delete('/1/user/:name', api.delete);
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));
