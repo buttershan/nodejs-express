@@ -31,14 +31,13 @@ if ('development' == app.get('env')) {
   app.use(express.errorHandler());
 }
 
-app.get('/', routes.index);
-app.get('/users', user.list);
-app.get('/hello', hello.index);
-app.get('/shan', hello.shan);
+
 
 //REST API
-app.get('/1/time', api.time);
-app.get('/1/info', api.info);
+app.post('/1/user/shan', api.create);
+app.get('/1/user/shan', api.read);
+app.put('/1/user/shan', api.update);
+app.delete('/1/user/shan', api.delete);
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));

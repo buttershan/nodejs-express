@@ -1,22 +1,37 @@
-exports.time = function(req, res){
-        var obj = {
-            "now": new Date().toISOString()
-        };
 
-        res.send(obj);
+var person = {
+	tel:""
+
 };
 
 
-var calledTime = 0;
+exports.create= function(req, res) {
+	console.log(">>>>>>>>>>>>> create");
 
-exports.info = function(req, res) {
-        calledTime += 1; // API 呼叫次數
+	person.tel = "123456789";
 
-        var obj = {
-                "server": "Shan's Server",
-                "time": new Date().toISOString(),
-                "count": calledTime
-        };
+	res.end();
+};
 
-        res.send(obj);
+exports.read= function(req, res) {
+	console.log(">>>>>>>>>>>>> read");
+
+	res.send(person);
+ 	res.end();
+};
+
+exports.update= function(req, res) {
+	console.log(">>>>>>>>>>>>> update");
+	console.log(req.query);
+	person.tel = req.query.tel;
+
+
+	res.end();
+};
+
+exports.delete= function(req, res) {
+	console.log(">>>>>>>>>>>>> delete");
+
+
+	res.end();
 };
